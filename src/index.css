@@ -1,0 +1,15 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+#App {
+  font-family: "Alkatra", cursive;
+}
+
+#header {
+  font-family: "Poppins", sans-serif;
+}
+
+#list {
+  scrollbar-width: thin;
+}
