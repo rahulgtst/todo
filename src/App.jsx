@@ -20,6 +20,7 @@ const App = () => {
 
   const handleDeleteTask = (taskId) => {
     setTasks(tasks.filter((t) => t.id !== taskId));
+    countTasks--;
   };
 
   const handleTaskStatus = (newTask) => {
@@ -37,7 +38,7 @@ const App = () => {
     setTasks(tasks.filter((t) => !t.done));
   };
 
-  const [theme, setTheme] = useState("lighy");
+  const [theme, setTheme] = useState("light");
 
   useEffect(() => {
     if (theme === "dark") {
