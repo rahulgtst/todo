@@ -15,6 +15,7 @@ const App = () => {
         done: false,
       },
     ]);
+    countTasks++;
   };
 
   const handleDeleteTask = (taskId) => {
@@ -29,6 +30,8 @@ const App = () => {
         } else return t;
       })
     );
+    if (newTask.done) countTasks--;
+    else countTasks++;
   };
   const handleCompletedTasks = () => {
     setTasks(tasks.filter((t) => !t.done));
@@ -47,7 +50,6 @@ const App = () => {
   const handleThemeSwitch = () => {
     setTheme(theme === "light" ? "dark" : "light");
   };
-
   return (
     <div
       id="App"
@@ -60,7 +62,7 @@ const App = () => {
         onDeleteTask={handleDeleteTask}
         onChangeTaskStatus={handleTaskStatus}
       />
-      <Info countTasks={tasks.length} onClearTasks={handleCompletedTasks} />
+      <Info countTasks={countTasks} onClearTasks={handleCompletedTasks} />
     </div>
   );
 };
@@ -68,3 +70,4 @@ const App = () => {
 export default App;
 
 let nextId = 0;
+let countTasks = 0;
