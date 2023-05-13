@@ -4,8 +4,13 @@ import List from "./component/List";
 import Info from "./component/Info";
 import Header from "./component/Header";
 
+const getTasks = () => {
+  let tasks = localStorage.getItem("todos");
+  return tasks ? JSON.parse(tasks) : [];
+};
+
 const App = () => {
-  const [tasks, setTasks] = useState([]);
+  const [tasks, setTasks] = useState(getTasks());
   const handleAddTask = (text) => {
     setTasks([
       ...tasks,
@@ -47,6 +52,10 @@ const App = () => {
       document.documentElement.classList.remove("dark");
     }
   }, [theme]);
+
+  useEffect(() => {
+    localStorage.setItem("todos", JSON.stringify(tasks));
+  }, [tasks]);
 
   const handleThemeSwitch = () => {
     setTheme(theme === "light" ? "dark" : "light");

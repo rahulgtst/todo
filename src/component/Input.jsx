@@ -2,8 +2,8 @@ import React from "react";
 
 const Input = ({ onAddTask }) => {
   function addTask(e) {
-    const text = document.querySelector("input");
-    if (text.value !== "") onAddTask(text.value.trim());
+    const text = document.querySelector("input").value;
+    if (text !== "") onAddTask(text.trim());
   }
   return (
     <div
@@ -12,10 +12,16 @@ const Input = ({ onAddTask }) => {
     >
       <input
         type="text"
+        onKeyDown={(e) => {
+          e.stopPropagation();
+          e.preventDefault();
+          if (e.key == "Enter") addTask();
+        }}
         placeholder="add your task here"
         className="h-[50px] w-[250px] caret-purple-500 sm:w-[350px] px-4 dark:bg-[#454545] dark:text-[#BDCDD6] border-none outline-none"
       />
       <button
+        id="addBtn"
         onClick={addTask}
         className="h-[50px] w-[50px] text-[30px] bg-blue-500"
       >
