@@ -14,7 +14,6 @@ const Input = ({ onAddTask }) => {
         type="text"
         onKeyDown={(e) => {
           e.stopPropagation();
-          e.preventDefault();
           if (e.key == "Enter") addTask();
         }}
         placeholder="add your task here"
